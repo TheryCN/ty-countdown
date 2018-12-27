@@ -39,7 +39,7 @@ public class YearlyEvent extends Event {
 	public LocalDateTime getNextFireDateTime(LocalDateTime now) {
 		LocalDateTime nextFireDateTime = LocalDateTime.of(now.getYear(), getMonth(), getDay(), 0, 0);
 		if (now.isAfter(nextFireDateTime)) {
-			nextFireDateTime.plusYears(1);
+			nextFireDateTime = nextFireDateTime.plusYears(1);
 		}
 
 		return nextFireDateTime;
