@@ -2,6 +2,9 @@ package com.github.therycn.tycountdownapi;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,15 +47,23 @@ public class CountdownRestController {
 		long days = dateTime.until(eventDateTime, ChronoUnit.DAYS);
 		dateTime = dateTime.plusDays(days);
 
-		long hours = dateTime.until(eventDateTime, ChronoUnit.HOURS);
-		dateTime = dateTime.plusHours(hours);
-
-		long minutes = dateTime.until(eventDateTime, ChronoUnit.MINUTES);
-		dateTime = dateTime.plusMinutes(minutes);
+		// long hours = dateTime.until(eventDateTime, ChronoUnit.HOURS);
+		// dateTime = dateTime.plusHours(hours);
+		//
+		// long minutes = dateTime.until(eventDateTime, ChronoUnit.MINUTES);
+		// dateTime = dateTime.plusMinutes(minutes);
 
 		long seconds = dateTime.until(eventDateTime, ChronoUnit.SECONDS);
 
-		return Countdown.builder().days(days).hours(hours).minutes(minutes).seconds(seconds).build();
+		return Countdown.builder().type(type).days(days).seconds(seconds).build();
+	}
+
+	@ApiOperation(value = "Find countdown before the given event type")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public Countdown randomCountdown() {
+		Random random = new Random();
+		List<EventType> eventTypeList = Arrays.asList(EventType.values());
+		return countdown(eventTypeList.get(random.nextInt(eventTypeList.size())));
 	}
 
 }

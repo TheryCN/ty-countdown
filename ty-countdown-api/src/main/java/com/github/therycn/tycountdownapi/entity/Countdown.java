@@ -17,11 +17,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Countdown {
 
+	private EventType type;
+
 	private long days;
-
-	private long hours;
-
-	private long minutes;
 
 	private long seconds;
 
