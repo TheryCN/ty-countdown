@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/home/pi/Documents/GitHub/ty-countdown/ty-countdown-api/ty-countdown.jar
+ExecStart=/home/pi/Documents/GitHub/ty-countdown/ty-countdown-api/target/ty-countdown.jar
 
 [Install]
 WantedBy=multi-user.target
