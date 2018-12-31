@@ -34,7 +34,7 @@ public class CountdownRestController {
 
 	private EventService eventService;
 
-	@ApiOperation(value = "Find countdown before the given event type")
+	@ApiOperation(value = "Find countdown for the given event type")
 	@RequestMapping(value = "/{type}", method = RequestMethod.GET)
 	public Countdown countdown(@PathVariable EventType type) {
 		Event event = eventService.findOne(type);
@@ -58,12 +58,19 @@ public class CountdownRestController {
 		return Countdown.builder().type(type).days(days).seconds(seconds).build();
 	}
 
-	@ApiOperation(value = "Find countdown before the given event type")
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@ApiOperation(value = "Find countdown for a random event")
+	@RequestMapping(value = "/random", method = RequestMethod.GET)
 	public Countdown randomCountdown() {
 		Random random = new Random();
 		List<EventType> eventTypeList = Arrays.asList(EventType.values());
 		return countdown(eventTypeList.get(random.nextInt(eventTypeList.size())));
 	}
 
+	@ApiOperation(value = "Find countdown for the active event")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public Countdown activeCountdown() {
+		Random random = new Random();
+		List<EventType> eventTypeList = Arrays.asList(EventType.values());
+		return countdown(eventTypeList.get(random.nextInt(eventTypeList.size())));
+	}
 }
