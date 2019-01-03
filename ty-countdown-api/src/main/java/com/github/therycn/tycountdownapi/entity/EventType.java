@@ -7,5 +7,5 @@ package com.github.therycn.tycountdownapi.entity;
  *
  */
 public enum EventType {
-	BIRTHDAY, CHRISTMAS
+    BIRTHDAY, CHRISTMAS, TRAIL
 }

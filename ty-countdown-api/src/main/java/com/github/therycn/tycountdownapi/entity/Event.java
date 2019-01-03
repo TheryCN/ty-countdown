@@ -31,44 +31,49 @@ import lombok.Getter;
 @Getter
 public abstract class Event extends AbstractEntity<Long> {
 
-	/** Serial version. */
-	private static final long serialVersionUID = -850686969756458480L;
+    /** Serial version. */
+    private static final long serialVersionUID = -850686969756458480L;
 
-	@Id
-	@Column(name = "EVT_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @Column(name = "EVT_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "EVT_TYPE", unique = true)
-	@Enumerated(EnumType.STRING)
-	private EventType type;
+    @Column(name = "EVT_TYPE")
+    @Enumerated(EnumType.STRING)
+    private EventType type;
 
-	@Column(name = "EVT_PERIODICITY", insertable = false, updatable = false)
-	@Enumerated(EnumType.STRING)
-	private EventPeriodicityType periodicity;
+    @Column(name = "EVT_NAME")
+    private String name;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.github.therycn.tycountdownapi.entity.AbstractEntity#getCreatedOn()
-	 */
-	@Column(name = "EVT_CREATED_ON")
-	@Override
-	public Date getCreatedOn() {
-		return super.getCreatedOn();
-	}
+    @Column(name = "EVT_PERIODICITY", insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
+    private EventPeriodicityType periodicity;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.github.therycn.tycountdownapi.entity.AbstractEntity#getUpdatedOn()
-	 */
-	@Column(name = "EVT_UPDATED_ON")
-	@Override
-	public Date getUpdatedOn() {
-		return super.getUpdatedOn();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.github.therycn.tycountdownapi.entity.AbstractEntity#getCreatedOn()
+     */
+    @Column(name = "EVT_CREATED_ON")
+    @Override
+    public Date getCreatedOn() {
+        return super.getCreatedOn();
+    }
 
-	public abstract LocalDateTime getNextFireDateTime(LocalDateTime now);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.github.therycn.tycountdownapi.entity.AbstractEntity#getUpdatedOn()
+     */
+    @Column(name = "EVT_UPDATED_ON")
+    @Override
+    public Date getUpdatedOn() {
+        return super.getUpdatedOn();
+    }
+
+    public abstract LocalDateTime getNextFireDateTime(LocalDateTime now);
 
 }

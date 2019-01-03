@@ -1,5 +1,7 @@
 package com.github.therycn.tycountdownapi.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.github.therycn.tycountdownapi.entity.Event;
@@ -13,5 +15,6 @@ import com.github.therycn.tycountdownapi.entity.EventType;
  */
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-	Event findByType(EventType type);
+    List<Event> findByType(EventType type);
+
 }
