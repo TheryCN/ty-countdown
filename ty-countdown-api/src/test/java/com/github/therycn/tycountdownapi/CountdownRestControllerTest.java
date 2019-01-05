@@ -31,10 +31,10 @@ public class CountdownRestControllerTest {
 	 * Test countdown birthday.
 	 */
 	@Test
-	public void testCountdownBirthday() {
+	public void testNext() {
 		// Given
 		// When
-		ResponseEntity<Countdown> response = restTemplate.getForEntity("/countdown/BIRTHDAY", Countdown.class);
+		ResponseEntity<Countdown> response = restTemplate.getForEntity("/countdown/", Countdown.class);
 		// Then
 		Assert.assertThat(response.getStatusCode(), Matchers.equalTo(HttpStatus.OK));
 	}
